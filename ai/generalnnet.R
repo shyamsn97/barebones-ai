@@ -125,4 +125,4 @@ grad_descent <- function(layer,listderiv,gradient,alpha,constantlist,output,var)
 
 o <- grad_descent(layerlist,nnylistderiv,gradients,0.000005,constants,nny,variables)
 
-plot(x,y,col = "blue", pch = 20) + points(x,o,col = "red", pch = 20)
+plot(variables[[1]],variables[[2]],col = "blue", pch = 20) + points(variable[[1]],o,col = "red", pch = 20)
