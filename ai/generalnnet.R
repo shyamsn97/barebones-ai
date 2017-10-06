@@ -74,6 +74,7 @@ deriv_propagate <- function(layer,const,xval,func,derivfunc) {
 }
 
 nnylist <- foward_propagate(constants,variables[[1]],hiddenfunc)
+nny <- nnylist[[length(nnylist)]]
 nnylistderiv <- deriv_propagate(nnylist,constants,variables[[1]],hiddenfunc,derivhiddenfunc)
 nnylistderiv <- nnylistderiv[1:(length(nnylistderiv)-1)]
 layerlist <- nnylist[1:(length(nnylist)-1)]
