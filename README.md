@@ -1,2 +1,2 @@
-# artificial-intelligence
-artificial-intelligence resources
+# artificial intelligence
+artificial intelligence resources
