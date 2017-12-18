@@ -53,12 +53,10 @@ def kmeans(k,data):
 	count = 0
 	boolean = False
 	while(boolean == False):
-		print "jew"
 		for o in range(k):
 			print len(newclusters["cluster" + str(o)]["points"])
 			print "---"
 			print len(lclusters["cluster" + str(o)]["points"])
-		print "end"
 		numcheck = 0
 		for check in range(k):
 			if(count != 0):
