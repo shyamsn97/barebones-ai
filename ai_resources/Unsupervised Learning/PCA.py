@@ -1,20 +1,8 @@
 
 import numpy as np
-
-def compute_covariance(X, correlation=False):
-
-    me = np.mean(X,axis=0)
-    meanmat = np.outer(me,np.ones(X.shape[0])).T
-    X_cent = X - meanmat
-    X_cent = X_cent.dot(X_cent.T)/(X_cent.shape[0] - 1)
-
-    if correlation == True:
-
-        stdev = np.diag(1/np.sqrt(np.diag(X_cent)))
-        X_cent = stdev.dot(X_cent).dot(stdev)
-
-    return X_cent
-
+import sys
+sys.path.append('../tools')
+import tools
 
 class PCA():
     
