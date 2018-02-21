@@ -10,7 +10,7 @@ import tensorflow as tf
 
 
 ##TODO add more parameters for customized optimization, customized layer types, save accuracy##
-class Densetf:
+class Densetf():
     """Helper for Neural Network Construction"""
     loaded = 0
     #input must be numpy arrays

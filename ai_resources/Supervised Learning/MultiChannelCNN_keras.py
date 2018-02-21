@@ -6,8 +6,11 @@ from keras.layers import *
 from keras import backend as K
 
 
-class MultiChannelCNN:
-    
+class MultiChannelCNN():
+    """
+    Multi Channel Convolutional Neural network built with keras
+    Can customize how many channels, kernel size for each channel, and the number of filters
+    """
     saved = 0
     
     def __init__(self, X,y,models=[]):
@@ -64,9 +67,7 @@ class MultiChannelCNN:
     
     #predict
     def predict(self,model,data):
-        
         #model = load_model('multichannelcnn.h5')
-
         predicts = model.predict(data)
 
         return predicts 
