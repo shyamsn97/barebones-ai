@@ -7,9 +7,9 @@ def compute_covariance(X,col=False, correlation=False):
         change correlation to True for the correlation matrix
     '''
     if col == False:
-        newx = (X-X.mean(axis=1)).T-.dot(X-X.mean(axis=1))/X.shape[1]
+        newx = (X-X.mean(axis=1)).T.dot(X-X.mean(axis=1))/X.shape[1]
     else:
-        newx = (X-X.mean(axis=0)).T-.dot(X-X.mean(axis=0))/X.shape[0]
+        newx = (X-X.mean(axis=0)).T.dot(X-X.mean(axis=0))/X.shape[0]
     if correlation == True:
         stdev = np.diag(1/np.sqrt(np.diag(newx)))
         newx = stdev.dot(newx).dot(stdev)
