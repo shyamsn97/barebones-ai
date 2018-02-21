@@ -40,6 +40,7 @@ class FuzzyKmeans():
         exit is the exit criteria 
         set argmax = True for normal K-means
         """
+        X = self.X
         np.random.seed(seed)
         U = np.random.uniform(0,1,size=(k,X.shape[0])) #initialize cluster probabilities
         centers = self.calculate_centers(U,m)

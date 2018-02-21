@@ -1,5 +1,6 @@
 import numpy as np
-ys.path.append('../tools')
+import sys
+sys.path.append('../tools')
 import tools
 
 class KNN(): 
