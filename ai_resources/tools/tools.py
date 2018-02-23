@@ -1,5 +1,15 @@
 import numpy as np
 
+
+def sigmoid(x,derivative=False):
+	'''
+	sigmoid function, set derivative = true to get the derivative
+	'''
+	if derivative==True:
+		return 1/(1+np.e**-(x*1.0))*(1-(1/(1+np.e**-(x*1.0))))
+	else:
+		return 1/(1+np.e**-(x*1.0))
+
 def compute_covariance(X,col=False, correlation=False):
     '''
         computes covariance using definition 1/n(XXT) - mumuT
@@ -7,7 +17,7 @@ def compute_covariance(X,col=False, correlation=False):
         change correlation to True for the correlation matrix
     '''
     if col == False:
-        newx = (X-X.mean(axis=1)).T.dot(X-X.mean(axis=1))/X.shape[1]
+        newx = (X-X.mean(axis=1)).dot(X-X.mean(axis=1)).T/X.shape[1]
     else:
         newx = (X-X.mean(axis=0)).T.dot(X-X.mean(axis=0))/X.shape[0]
     if correlation == True:
@@ -27,16 +37,16 @@ def l2distance(X,y):
     return np.sqrt(X_squared + y_squared - Xy).reshape((X.shape[0],))
 
 def standardize(X):
-'''
-    z-score standardization, (x -mu)/std(x)
-'''
-    mu = np.mean(X,axis=0)
-    mumat = np.outer(mu,np.ones(X.shape[0])).T
-    newx = X - mumat
+	'''
+	    z-score standardization, (x -mu)/std(x)
+	'''
+	mu = np.mean(X,axis=0)
+	mumat = np.outer(mu,np.ones(X.shape[0])).T
+	newx = X - mumat
 
-    var = np.sqrt(1/np.var(X,axis=0).reshape((X.shape[0],1)))
-    ones = np.ones(X.shape[0]).reshape((1,X.shape[0]))
-    varmatrix = var.dot(ones)/X.shape[0]
+	var = np.sqrt(1/np.var(X,axis=0).reshape((X.shape[0],1)))
+	ones = np.ones(X.shape[0]).reshape((1,X.shape[0]))
+	varmatrix = var.dot(ones)/X.shape[0]
 
-    return newx.dot(varmatrix)
+	return newx.dot(varmatrix)
 
