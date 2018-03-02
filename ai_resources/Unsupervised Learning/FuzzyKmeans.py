@@ -4,12 +4,16 @@ import numpy as np
 class FuzzyKmeans():
     """
     Fuzzy Kmeans calculates cluster probabilities in regards to euclidian distance
-    Equivalent to vanilla Kmeans if we assign a given point to the cluster with the highest probability
+    Equivalent to vanilla Kmeans if we assign a given point to the cluster with the highest fuzzy probability
     """
     def __init__(self,X):
         self.X = X
         
     def calculate_centers(self,U,m):
+        """
+        Recalculates centers using a linear combination of fuzzy probs and X values
+        Normalized by the sum of all the fuzzy probs.
+        """
         X = self.X
         ones = np.ones(X.shape[0]).reshape((X.shape[0],1))
         denom = (1/(U**m).dot(ones)).reshape(U.shape[0],)

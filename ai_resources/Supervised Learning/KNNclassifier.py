@@ -16,16 +16,21 @@ class KNN():
         
         classes = []
         for i in range(pred.shape[0]):
-            
             predic = pred[i,:]
             print(predic)
-            dist = l2distance(self.X,predic)
+            nvec = self.X[i,:]
+            yval = self.y[i]
+            self.y = np.delete(self.y,i)
+            self.X = np.delete(self.X, (i),axis=0)
+            dist = tools.l2distance(self.X,predic)
+            self.X = np.insert(self.X, i, nvec, 0) 
             indices = dist.argsort()[:k]
             classcounts = y[indices]
+            self.y = np.insert(self.y,i,yval)
             print(classcounts)
             vals,counts = np.unique(classcounts,return_counts=True)
             ind=np.argmax(counts)
             classpick = vals[ind]
             classes.append(classpick)
             
-        return np.array(classes)    
+        return np.array(classes)      
