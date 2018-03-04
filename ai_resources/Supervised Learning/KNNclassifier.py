@@ -6,6 +6,9 @@ import tools
 class KNN(): 
     """
         K nearest neighbor classifier. Assign a given vector to a class based on l2 distance
+        Parameters:
+        numpy array X: data matrix
+        numpy array y: labels/classes
     """
     def __init__(self,X,y):
         
@@ -17,7 +20,6 @@ class KNN():
         classes = []
         for i in range(pred.shape[0]):
             predic = pred[i,:]
-            print(predic)
             nvec = self.X[i,:]
             yval = self.y[i]
             self.y = np.delete(self.y,i)
@@ -27,10 +29,9 @@ class KNN():
             indices = dist.argsort()[:k]
             classcounts = y[indices]
             self.y = np.insert(self.y,i,yval)
-            print(classcounts)
             vals,counts = np.unique(classcounts,return_counts=True)
             ind=np.argmax(counts)
             classpick = vals[ind]
             classes.append(classpick)
             
-        return np.array(classes)      
+        return np.array(classes)   

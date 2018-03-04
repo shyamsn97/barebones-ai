@@ -10,22 +10,21 @@ def sigmoid(x,derivative=False):
 	else:
 		return 1/(1+np.e**-(x*1.0))
 
-def compute_covariance(X,col=False, correlation=False):
+def compute_covariance(X,col=True, correlation=False):
     '''
         computes covariance using definition 1/n(XXT) - mumuT
         change col to True for 1/n(XTX) - mumuT
         change correlation to True for the correlation matrix
     '''
     if col == False:
-        newx = (X-X.mean(axis=1)).dot(X-X.mean(axis=1)).T/X.shape[1]
+        newx = ((X-X.mean(axis=1)).dot(X-X.mean(axis=1)).T)/X.shape[1]
     else:
-        newx = (X-X.mean(axis=0)).T.dot(X-X.mean(axis=0))/X.shape[0]
+        newx = ((X-X.mean(axis=0)).T.dot(X-X.mean(axis=0)))/X.shape[0]
     if correlation == True:
         stdev = np.diag(1/np.sqrt(np.diag(newx)))
         newx = stdev.dot(newx).dot(stdev)
-
     return newx
-
+    
 def l2distance(X,y):
     '''
 	   gets euclidian distance between every row vector in a data matrix X and vector y, we can reduce euclidian distance to x^2 + y^2 - 2xy
