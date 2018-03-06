@@ -24,10 +24,11 @@ class PCA():
         else:
             self.mumat = X.mean(axis=1)
             self.cov = compute_covariance(X,False)
-            
+        self.X_shifted = self.X - self.mumat
         self.eigenvalues, self.eigenvectors = np.linalg.eig(self.cov)
+        self.eigenvectors = self.eigenvectors.astype(float).real
         self.eigenvalues = np.sort(self.eigenvalues)[::-1]
-        self.proportion_variance = (self.eigenvalues/float(sum(self.eigenvalues))).astype(float)
+        self.proportion_variance = ((self.eigenvalues/float(sum(self.eigenvalues))).astype(float)).real
         self.cumulative_var = np.cumsum(self.proportion_variance)
         
     def rank(self,n):
@@ -37,15 +38,15 @@ class PCA():
         indices = eigenvalues.argsort()[::-1][:n]  
         Q = eigenvectors[:,indices]
         if self.column == False:
-            return Q.dot(Q.T.dot(self.X)).astype(float) 
+            return Q.dot(Q.T.dot(self.X_shifted)).astype(float) + self.mumat
         else:
-            return self.X.dot(Q).dot(Q.T).astype(float) 
+            return self.X_shifted.dot(Q).dot(Q.T).astype(float) + self.mumat
             
     def project(self,n):
-        #this projects the data onto a lower dimension n
+        #this projects the data onto a lower dimension
         eigenvalues = self.eigenvalues
         eigenvectors = self.eigenvectors
         indices = eigenvalues.argsort()[::-1][:n]
         Q = eigenvectors[:,indices]
         
-        return self.X.dot(Q).astype(float) 
+        return self.X_shifted.dot(Q).astype(float) 
