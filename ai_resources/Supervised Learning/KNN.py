@@ -14,7 +14,7 @@ class KNN():
         
         self.X = X
         self.y = y
-        
+    
     def predict(self,k,pred):
         
         classes = []
@@ -22,13 +22,9 @@ class KNN():
             predic = pred[i,:]
             nvec = self.X[i,:]
             yval = self.y[i]
-            self.y = np.delete(self.y,i)
-            self.X = np.delete(self.X, (i),axis=0)
             dist = tools.l2distance(self.X,predic)
-            self.X = np.insert(self.X, i, nvec, 0) 
-            indices = dist.argsort()[:k]
+            indices = dist.argsort()[1:(k+1)]
             classcounts = y[indices]
-            self.y = np.insert(self.y,i,yval)
             vals,counts = np.unique(classcounts,return_counts=True)
             ind=np.argmax(counts)
             classpick = vals[ind]
