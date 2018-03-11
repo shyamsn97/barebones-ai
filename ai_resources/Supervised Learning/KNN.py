@@ -23,7 +23,7 @@ class KNN():
             nvec = self.X[i,:]
             yval = self.y[i]
             dist = tools.l2distance(self.X,predic)
-            indices = dist.argsort()[1:(k+1)]
+            indices = dist.argsort()
             classcounts = y[indices]
             vals,counts = np.unique(classcounts,return_counts=True)
             ind=np.argmax(counts)
