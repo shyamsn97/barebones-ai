@@ -27,14 +27,18 @@ def compute_covariance(X,col=True, correlation=False):
     
 def l2distance(X,y):
     '''
-	   gets euclidian distance between every row vector in a data matrix X and vector y, we can reduce euclidian distance to x^2 + y^2 - 2xy
+	   gets euclidian distance between vector X and matrix(or vector) y
     '''
-    X_squared = np.diag(X.dot(X.T)).reshape((X.shape[0],1))
-    y_squared =  y.dot(np.outer(y,np.ones(X_squared.shape[0]))).reshape((X_squared.shape[0],1))
-    Xy = 2*X.dot(y).reshape(X.shape[0],1)
-    
-    return np.sqrt(X_squared + y_squared - Xy).reshape((X.shape[0],))
+    ones = np.ones(y.shape[0]).reshape(y.shape[0],1)
+    X = ones.dot(X)
+    dist = (y - X)**2
+    dist = np.sqrt(np.sum(dist,axis=1))
 
+    # X_squared = np.diag(X.dot(X.T)).reshape((X.shape[0],1))
+    # y_squared =  y.dot(np.outer(y,np.ones(X_squared.shape[0]))).reshape((X_squared.shape[0],1))
+    # Xy = 2*X.dot(y).reshape(X.shape[0],1)
+    # return np.sqrt(X_squared + y_squared - Xy).reshape((X.shape[0],))
+    return dist
 def standardize(X):
 	'''
 	    z-score standardization, (x -mu)/std(x), standardizing the rows
