@@ -38,7 +38,7 @@ class FuzzyKmeans():
 
         return us[:,1:]
         
-    def cluster(self,m,k,exit,seed,argmax=False): 
+    def cluster(self,m,k,exit,seed,maxiterations=100,argmax=False): 
         """
         Main clustering function
         m is the degree of uncertainty, (fuzziness of cluster)
@@ -51,10 +51,12 @@ class FuzzyKmeans():
         U = np.random.uniform(0,1,size=(k,X.shape[0])) #initialize cluster probabilities
         centers = self.calculate_centers(U,m)
         newcenters = 2*centers
-        while np.linalg.norm((centers - newcenters),2) >= exit:
+        count = 0
+        while np.linalg.norm((centers - newcenters),2) >= exit and count <= maxiterations:
             newcenters = centers
             U = self.calculate_fuzzy(centers,m)
             centers = self.calculate_centers(U,m)
+            count += 1
         if argmax:
-            return np.argmax(U,axis=0).T
+            return (np.argmax(U,axis=0).T).reshape(X.shape[0],1)
         return U.T
