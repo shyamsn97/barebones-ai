@@ -49,4 +49,4 @@ class PCA():
         indices = eigenvalues.argsort()[::-1][:n]
         Q = eigenvectors[:,indices]
         
-        return self.X_shifted.dot(Q).astype(float) 
+        return self.X.dot(Q).astype(float) 
