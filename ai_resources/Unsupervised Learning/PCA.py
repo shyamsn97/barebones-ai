@@ -16,14 +16,15 @@ class PCA():
     numpy array cumulative_var: cumulative variance explained by PCs
     """
     def __init__(self, X,column=True):
-        self.column = column #PCA using the rows of X or the columns to construct the cov matrix
+        #PCA uses the rows of X or the columns to construct the cov matrix
+        self.column = column 
         self.X = X
         if(column == True):
             self.mumat = X.mean(axis=0)
-            self.cov = compute_covariance(X)
+            self.cov = tools.compute_covariance(X)
         else:
             self.mumat = X.mean(axis=1)
-            self.cov = compute_covariance(X,False)
+            self.cov = tools.compute_covariance(X,False)
         self.X_shifted = self.X - self.mumat
         self.eigenvalues, self.eigenvectors = np.linalg.eig(self.cov)
         self.eigenvectors = self.eigenvectors.astype(float).real

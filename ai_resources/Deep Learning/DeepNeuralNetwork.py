@@ -10,7 +10,6 @@ class DeepNeuralNetwork():
     TODO: Vanishing/Exploding gradient is an issue right now, very sensitive to initial weight placement.
     """
     def __init__(self,X,y):
-        
         self.X = X
         self.y = y
         self.output = 0
@@ -22,7 +21,6 @@ class DeepNeuralNetwork():
         self.initialized = False
         
     def add(self,nodes):
-        
         if len(self.layerdims) == 0:
         
             self.layerdims.append((self.X.shape[1],nodes))
@@ -46,20 +44,20 @@ class DeepNeuralNetwork():
                 self.layerdims.append((layerdim[1],numoutputs))
         self.initialized = True
         
-    def foward(self):
+    def foward(self,X):
         '''
         foward pass
         '''
         self.layers = []
         self.derivlayers = []
         weights = self.weights
-        self.layers.append(self.X)
+        self.layers.append(X)
         i = 0
         val = 0
         while i < len(weights):
             if i == 0:
-                val = tools.sigmoid(self.X.dot(weights[i]))
-                derival = tools.sigmoid(self.X.dot(weights[i]),True)
+                val = tools.sigmoid(X.dot(weights[i]))
+                derival = tools.sigmoid(X.dot(weights[i]),True)
                 self.layers.append(val)
                 self.derivlayers.append(derival)
             elif i == (len(weights)-1):
@@ -72,10 +70,9 @@ class DeepNeuralNetwork():
                 self.layers.append(val)
                 self.derivlayers.append(derival)
             i += 1
-        self.output = val
+        return val
     
     def calculate_gradients(self):
-        
         self.gradients = []
         y = self.y
         output = self.output
@@ -83,8 +80,7 @@ class DeepNeuralNetwork():
         layers = self.layers
         derivlayers = self.derivlayers
         i = len(self.weights)-1
-        #print("LOSS")
-        #print(loss[:10])
+
         while i >= 0:
             if(i ==  (len(self.weights)-1)):
                 chain = loss
@@ -93,8 +89,7 @@ class DeepNeuralNetwork():
                 chain = (chain.dot(self.weights[i+1].T))*derivlayers[i]
                 self.gradients.append(layers[i].T.dot(chain))
             i-=1
-        #print("GRADIENTS")
-        #print(self.gradients)   
+ 
         self.gradients = self.gradients[::-1]
             
     def train(self,epochs=1000,learning_rate=0.001):
@@ -105,7 +100,7 @@ class DeepNeuralNetwork():
         '''
         if self.initialized == False:
             self.initialize()
-        self.foward()
+        self.output = self.foward(self.X)
         for i in range(epochs):
             MSE = np.sum((self.y - self.output)**2)
             print("MSE at epoch " + str(i) + ": " + str(MSE))
@@ -116,4 +111,19 @@ class DeepNeuralNetwork():
                 self.weights[i] = self.weights[i] - learning_rate*self.gradients[i]
                 #print("AFTER")
                 #print(self.weights[i])
-            self.foward()
+            self.output = self.foward(self.X)
+    
+    def predict(self,Xtest):
+        weights = self.weights
+        i = 0
+        val = 0
+        while i < len(weights):
+            if i == 0:
+                val = tools.sigmoid(Xtest.dot(weights[i]))
+            elif i == (len(weights)-1):
+                val = val.dot(weights[i])
+            else:
+                val = tools.sigmoid(val.dot(weights[i]))
+            i += 1
+        return val
+    

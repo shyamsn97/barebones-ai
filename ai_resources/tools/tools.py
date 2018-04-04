@@ -39,6 +39,7 @@ def l2distance(X,y):
     # Xy = 2*X.dot(y).reshape(X.shape[0],1)
     # return np.sqrt(X_squared + y_squared - Xy).reshape((X.shape[0],))
     return dist
+
 def standardize(X):
 	'''
 	    z-score standardization, (x -mu)/std(x), standardizing the rows
@@ -53,3 +54,25 @@ def standardize(X):
 
 	return newx.dot(varmatrix)
 
+def split_set(X,portion,y=None):
+    '''
+    use:
+        X = iris.data
+        y = iris.target
+        X_train, X_test, y_train, y_test = split_set(X,0.1,y)
+    '''
+    X = np.array(X)
+    y = np.array(y)
+    size = int(X.shape[0]*portion)
+    indexlist = np.arange(X.shape[0])
+    testinds = np.random.choice(indexlist, size, replace=False)
+    traininds = np.array([x for x in range(X.shape[0]) if x not in testinds])  
+    if np.all(y == None):
+        return X[traininds],X[testinds]
+    else:
+        return X[traininds],X[testinds],y[traininds],y[testinds]
+
+def calc_accuracy(obj,xtest,ytest):
+    predictions = obj.predict(xtest)
+    acc = ytest - predictions
+    return np.where(acc == 0)[0].shape[0]/ytest.shape[0]
