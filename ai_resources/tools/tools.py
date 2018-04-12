@@ -42,7 +42,7 @@ def l2distance(X,y):
 
 def standardize(X):
 	'''
-	    z-score standardization, (x -mu)/std(x), standardizing the rows
+	    z-score standardization, (x -mu)/std(x), standardizing the columns
 	'''
 	mu = np.mean(X,axis=0)
 	mumat = np.outer(mu,np.ones(X.shape[0])).T
