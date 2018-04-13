@@ -6,8 +6,8 @@ import tools
 class KNN(): 
     
     """
-        K nearest neighbor classifier. Assign a given vector to a class based on l2 distance
-        Parameters:
+    K nearest neighbor classifier. Assign a given vector to a class based on l2 distance
+    Parameters:
         X: numpy array() data matrix
         y: numpy array() labels/classes
     """

@@ -39,7 +39,7 @@ class FuzzyKmeans():
 
         return us[:,1:]
         
-    def cluster(self,m,k,exit,seed,maxiterations=100,argmax=False): 
+    def predict(self,m,k,exit,seed,maxiterations=100,argmax=False): 
         """
         Main clustering function
         m is the degree of uncertainty, (fuzziness of cluster)
