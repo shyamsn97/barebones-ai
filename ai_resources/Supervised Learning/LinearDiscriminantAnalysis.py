@@ -4,11 +4,12 @@ sys.path.append('../tools')
 import tools
 
 class LDA():
+    
     """
     Linear Discriminant Analysis Classifier using Gaussian assumptions
     Parameters:
-    numpy array X: data matrix, must have shape of length two (for vectors, reshape with column = 1)
-    numpy array y: class labels, must be numeric
+        X: numpy array() data matrix, must have shape of length two (for vectors, reshape with column = 1)
+        y: numpy array() class labels, must be numeric
     """
     def __init__(self,X,y):
         self.X = X

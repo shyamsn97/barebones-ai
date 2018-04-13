@@ -1,14 +1,35 @@
-
-
-# # Iterative Methods
-
-# Here we will observe the performance of many iterative solutions to Ax = b
-
-# We will assume that our data is Positive Definite, like a Correlation matrix, so we construct it using The basic definition of Diagonalization
 import numpy as np
-import timeit
 
+def Batch_Gradient_Descent(X,y,parameters,gradient_func,predict_func,learning_rate=0.001,epochs=200,batch_size=32):
+    
+    """
+    Batch gradient descent
+    Parameters:
+    	X = np.array() data matrix
+    	y = np.array() labels
+    	parameters = np.array() weights
+    	gradients_func = function to calculate the gradient
+		predict_func = function to predict labels with data matrix
+    """
+    for i in range(epochs):
+        
+        h = predict_func(X,parameters)
+        indices = np.arange(y.shape[0])
+        np.random.shuffle(indices)
+        sample = 0
 
+        while(sample < y.shape[0]):
+
+            batch_X = X[sample:(sample+batch_size)]
+            batch_y = y[sample:(sample+batch_size)]
+            batch_h = h[sample:(sample+batch_size)]
+            sample += batch_size
+
+            parameters = parameters - learning_rate*gradient_func(parameters,batch_X,batch_y)
+            
+        print("EPOCHS: " + str(i))
+                   
+    return parameters
 
 def CnstrPD(n, a):
     RM = np.random.randn(n,n) 

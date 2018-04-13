@@ -6,6 +6,12 @@ import tools
 
 class LinearRegression():
 
+	"""
+    Linear Regression class, with kfold cross validation
+    Parameters:
+        X: numpy array() data matrix, must have shape of length two (for vectors, reshape with column = 1)
+        y: numpy array() class labels, must be numeric
+    """
 	def __init__(self,X,y):
 
 		self.X = X

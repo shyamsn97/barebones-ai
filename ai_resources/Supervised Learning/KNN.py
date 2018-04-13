@@ -4,11 +4,12 @@ sys.path.append('../tools')
 import tools
 
 class KNN(): 
+    
     """
         K nearest neighbor classifier. Assign a given vector to a class based on l2 distance
         Parameters:
-        numpy array X: data matrix
-        numpy array y: labels/classes
+        X: numpy array() data matrix
+        y: numpy array() labels/classes
     """
     def __init__(self,X,y):
         

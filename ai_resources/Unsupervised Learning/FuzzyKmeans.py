@@ -2,11 +2,12 @@
 import numpy as np
 
 class FuzzyKmeans():
+    
     """
     Fuzzy Kmeans calculates cluster probabilities in regards to euclidian distance
     Equivalent to vanilla Kmeans if we assign a given point to the cluster with the highest fuzzy probability
     Parameters:
-    numpy array X: data matrix
+        X: numpy array() data matrix
     """
     def __init__(self,X):
         self.X = X

@@ -4,10 +4,20 @@ sys.path.append('../tools/')
 import tools
 
 class DeepNeuralNetwork():
+    
     """
-    Deep Neural Net built from scratch
-    capable of regression tasks
+    Deep Neural Net built from scratch for regression tasks
     TODO: Vanishing/Exploding gradient is an issue right now, very sensitive to initial weight placement.
+    Parameters:
+        X: numpy array() data matrix, must have shape of length two (for vectors, reshape with column = 1)
+        y: numpy array() class labels, must be numeric
+        output: numpy array() outputs
+        layerdims: list() of dimensions of layers
+        layers: list() of numpy arrays of layers
+        weights: list() of numpy arrays of weights
+        derivlayers: list() of numpy arrays of layers with derivative of sigmoid
+        gradients: list() of gradients/derivatives of the layers
+        initialized: boolean to check whether the neural network has already been trained
     """
     def __init__(self,X,y):
         self.X = X

@@ -34,10 +34,6 @@ def l2distance(X,y):
     dist = (y - X)**2
     dist = np.sqrt(np.sum(dist,axis=1))
 
-    # X_squared = np.diag(X.dot(X.T)).reshape((X.shape[0],1))
-    # y_squared =  y.dot(np.outer(y,np.ones(X_squared.shape[0]))).reshape((X_squared.shape[0],1))
-    # Xy = 2*X.dot(y).reshape(X.shape[0],1)
-    # return np.sqrt(X_squared + y_squared - Xy).reshape((X.shape[0],))
     return dist
 
 def standardize(X):
@@ -54,7 +50,7 @@ def standardize(X):
 
 	return newx.dot(varmatrix)
 
-def split_set(X,portion,y=None):
+def cross_val_split_set(X,portion,y=None):
     '''
     use:
         X = iris.data
@@ -72,7 +68,10 @@ def split_set(X,portion,y=None):
     else:
         return X[traininds],X[testinds],y[traininds],y[testinds]
 
-def calc_accuracy(obj,xtest,ytest):
-    predictions = obj.predict(xtest)
+
+def calc_accuracy(predictions,ytest):
+    """
+    Calculates accuracy for classification tasks
+    """
     acc = ytest - predictions
     return np.where(acc == 0)[0].shape[0]/ytest.shape[0]

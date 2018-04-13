@@ -4,6 +4,13 @@ sys.path.append('../tools')
 import tools
 class Kmeans():
     
+    """
+    Vanilla Kmeans:
+    Parameters:
+        X: numpy array() data matrix
+        center_assignments: dictionary of numpy arrays of indices for data points
+        centers: list of numpy arrays for centers of clusters
+    """
     def __init__(self,X):
         self.X = standardize(X)
         self.center_assignments = {}

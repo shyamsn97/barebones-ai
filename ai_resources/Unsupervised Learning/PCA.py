@@ -5,15 +5,16 @@ sys.path.append('../tools')
 import tools
 
 class PCA():
+    
     """
     Dimensionality reduction using the diagonalization of a covariance matrix
     Can specify whether to use calculate the covariance matrix of the rows or columns of a given data matrix
     Parameters:
-    numpy array X: data matrix
-    boolean column: determines whether to generate covariance matrix from columns or rows
-    numpy array eigenvalues and eigenvectors: eigenvalues and eigenvectors of the covariance matrix
-    numpy array proportion_variance: variance explained by PCs
-    numpy array cumulative_var: cumulative variance explained by PCs
+        X: numpy array() data matrix
+        column: boolean determines whether to generate covariance matrix from columns or rows
+        eigenvalues and eigenvectors: numpy array() eigenvalues and eigenvectors of the covariance matrix
+        proportion_variance: numpy array() variance explained by PCs
+        cumulative_var: numpy array() cumulative variance explained by PCs
     """
     def __init__(self, X,column=True):
         #PCA uses the rows of X or the columns to construct the cov matrix
