@@ -75,3 +75,29 @@ def calc_accuracy(predictions,ytest):
     """
     acc = ytest - predictions
     return np.where(acc == 0)[0].shape[0]/ytest.shape[0]
+
+def bucket(data):
+    """
+    buckets continuous data by percentiles
+    """
+    upper = np.percentile(data,75)
+    mid = np.percentile(data,50)
+    lower = np.percentile(data,25)
+    data[(data <= lower)] = 0
+    data[(data > lower) & (data <= mid)] = 1
+    data[(data < upper) & (data > mid)] = 2
+    data[(data >= upper)] = 3
+    return data
+
+def generate_similarity_matrix(X,sim_type='l2'):
+    
+    n = X.shape[0]
+    p = X.shape[1]
+    
+    newmatrix = np.zeros((n,n))
+    if sim_type == 'l2':
+        for i in range(n):
+            newmatrix[i] = (l2distance(X[i].reshape(1,p),X)).reshape(1,n)
+        return newmatrix
+    else:
+        print("Please provide a distance measure")    

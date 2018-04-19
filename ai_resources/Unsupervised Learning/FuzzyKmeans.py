@@ -39,7 +39,7 @@ class FuzzyKmeans():
 
         return us[:,1:]
         
-    def predict(self,m,k,exit,seed,maxiterations=100,argmax=False): 
+    def predict(self,k,m=2,exit=0.01,seed=1,maxiterations=100,argmax=False): 
         """
         Main clustering function
         m is the degree of uncertainty, (fuzziness of cluster)
@@ -59,5 +59,5 @@ class FuzzyKmeans():
             centers = self.calculate_centers(U,m)
             count += 1
         if argmax:
-            return (np.argmax(U,axis=0).T).reshape(X.shape[0],1)
+            return (np.argmax(U,axis=0).T).reshape(X.shape[0],)
         return U.T
