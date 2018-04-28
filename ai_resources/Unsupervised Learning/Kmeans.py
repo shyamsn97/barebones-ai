@@ -12,18 +12,24 @@ class Kmeans():
         centers: list of numpy arrays for centers of clusters
     """
     def __init__(self,X):
-        self.X = standardize(X)
+        self.X = X
         self.center_assignments = {}
         self.centers = []
         
     def calculate_centers(self):
         self.centers = np.array(list(map(lambda x : np.mean(X[x,:],axis=0),self.center_assignments.values())))
         
-    def predict(self,k,seed,exit=0.01):
+    def predict(self,k,seed,exit=0.001):
         
         X = self.X
-        self.centers = np.random.uniform(0,1,size=(k,X.shape[1]))
-        oldcenters = self.centers*2
+        self.centers = np.zeros(shape=(k,X.shape[1]))
+        print(self.centers.shape)
+        for i in range(k):
+            for j in range(X.shape[1]):
+                minx = np.min(X[:,j])
+                maxx = np.max(X[:,j])
+                self.centers[i,j] = np.random.uniform(minx,maxx)
+        oldcenters = self.centers + 4
         while np.all(np.linalg.norm((self.centers - oldcenters),2) >= exit):
             oldcenters = self.centers
             for i in range(k):

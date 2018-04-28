@@ -89,15 +89,38 @@ def bucket(data):
     data[(data >= upper)] = 3
     return data
 
+def cosine_distance(x,y):
+    
+    num = np.dot(x,y)
+    denom = np.linalg.norm(x)*np.linalg.norm(y)
+    return 1 - num/denom
+
+def gen_distance_similarities(X,y,dist='l2'):
+    '''
+       calculates distance similarities measurements, such as l2, l1, and cosine
+    '''
+    if dist == 'l2':
+        ones = np.ones(y.shape[0]).reshape(y.shape[0],1)
+        X = ones.dot(X)
+        dist = (y - X)**2
+        dist = 1/(1 + np.sqrt(np.sum(dist,axis=1)))
+    elif dist == 'l1':
+        ones = np.ones(y.shape[0]).reshape(y.shape[0],1)
+        X = ones.dot(X)
+        dist = np.abs(y - X)
+        dist = 1/(np.sum(dist,axis=1) + 1)
+    elif dist == 'cosine':
+        dist = np.zeros(y.shape[0])
+        for i in range(y.shape[0]):
+            dist[i] = cosine_distance(X,y[i])
+    return dist
+
 def generate_similarity_matrix(X,sim_type='l2'):
     
     n = X.shape[0]
     p = X.shape[1]
     
     newmatrix = np.zeros((n,n))
-    if sim_type == 'l2':
-        for i in range(n):
-            newmatrix[i] = (l2distance(X[i].reshape(1,p),X)).reshape(1,n)
-        return newmatrix
-    else:
-        print("Please provide a distance measure")    
+    for i in range(n):
+        newmatrix[i] = (gen_distance_similarities(X[i].reshape(1,p),X,sim_type)).reshape(1,n)
+    return newmatrix

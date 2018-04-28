@@ -10,24 +10,26 @@ class SpectralClustering():
         Parameters:
             X: numpy array() data matrix
     """
-    def __init__(self,X):
+      def __init__(self,X):
         
         self.X = X
         
-    def generate_normalized_laplacian(self,distance_measurement='l2'):
+    def generate_normalized_laplacian(self,distances='l2'):
         
-        X = self.X
-        similarity = tools.generate_similarity_matrix(X)
-        distances_inv = np.diag(1/np.sum(similarity,axis=1))
-        laplacian = np.identity(X.shape[0]) - distances_inv.dot(similarity)
+        X = tools.generate_similarity_matrix(self.X,distances)
+        distances = np.diag(np.sum(X,axis=1))
+        l = distances - X
+        distances_inv = np.diag(1/np.sum(X,axis=1))
+        laplacian = distances_inv.dot(l)
         return laplacian
     
-    def predict(self,k,distance_measure='l2',clustering_algo=FuzzyKmeans):
+    def predict(self,k,distances='l2',clustering_algo=FuzzyKmeans):
         
-        laplacian = self.generate_normalized_laplacian(distance_measure)
+        laplacian = self.generate_normalized_laplacian(distances)
         eigenvalues, eigenvectors = np.linalg.eig(laplacian)
         indices = eigenvalues.argsort()[:k]
         eigenvectors = eigenvectors[:,indices]
         clustering = clustering_algo(eigenvectors)
-        return clustering.predict(k,argmax=True)
+        return clustering.predict(k,0)
+    
     
