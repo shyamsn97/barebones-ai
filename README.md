@@ -1,5 +1,3 @@
-# Machine Learning and Deep Learning algorithms built from scratch
-
 ## Popular machine/deep learning algorithms and strategies implemented from scratch using numpy. Every Algorithm has been applied on real data such as predicting house prices, classifying flowers, predicting tumors, etc.
 
 ## Algorithms Implemented
