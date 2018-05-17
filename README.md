@@ -10,6 +10,7 @@
   - Logistic Regression
 
 ### Unsupervised Learning
+  - Fuzzy K Means
   - K Means / K Medians
   - PCA
   - Spectral Clustering

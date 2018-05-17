@@ -22,6 +22,11 @@ class LinearRegression():
 			return np.linalg.inv(X.T.dot(X)).dot(X.T.dot(y))
 
 	def k_fold_cross_val(k,seed): #input seed = -1 for complete random output
+
+		if k <= 1:
+			print("Pick a k greater than 1")
+			return None
+			
 	    ones = np.ones(self.X.shape[0]) 
 	    X = np.column_stack((ones,self.X)).astype(int)
 	    y = self.y
@@ -43,6 +48,7 @@ class LinearRegression():
 	    mses = []
 	    mspes = []
 	    for i in range(k):
+
 	        leaveoutx = np.array(xfolds[i])
 	        leaveouty = np.array(yfolds[i])
 	        leavein = [index for index in range(k) if index != i]
@@ -57,8 +63,10 @@ class LinearRegression():
 	        MSPE =  (1/leaveoutx.shape[0])*((leaveouty - testest).T.dot((leaveouty - testest)))
 	        mses.append(MSE)
 	        mspes.append(MSPE)
+
 	    avgmse = sum(mses)/k
 	    avgmspe = sum(mspes)/k
 	    print("Average MSE: " + str(avgmse))
 	    print("Average MSPE: " + str(avgmspe[0,0]))
+
 	    return avgmse,avgmspe[0,0]
