@@ -1,4 +1,5 @@
-## Popular machine/deep learning algorithms and strategies implemented from scratch using numpy. Every Algorithm has been applied on real data such as predicting house prices, classifying flowers, predicting tumors, etc.
+## Popular machine/deep learning algorithms and strategies implemented from scratch using numpy 
+## Every algorithm has been applied on real data such as predicting house prices, classifying flowers, predicting tumors, etc.
 
 ## Algorithms Implemented
 
