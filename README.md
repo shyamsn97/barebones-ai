@@ -8,7 +8,6 @@
   - Linear Distriminant Analysis
   - Linear Regression
   - Logistic Regression
-  - Page Rank (Power Method)
 
 ### Unsupervised Learning
   - K Means / K Medians
