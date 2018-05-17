@@ -18,8 +18,8 @@
   - Deep Neural Network
 
 ### Optimization Methods
-  - Mini-Batch Gradient Descent
-  - Jacobi Iteration
-  - Steepest Gradient Descent
   - Conjugate Gradient Descent
+  - Jacobi Iteration
+  - Mini-Batch Gradient Descent
+  - Steepest Gradient Descent
 
