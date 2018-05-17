@@ -1,4 +1,4 @@
-## Popular machine/deep learning algorithms and strategies implemented from scratch using numpy and applied on real data 
+## Popular machine/deep learning algorithms and strategies implemented from scratch using numpy and applied on real-life data 
 
 ## Algorithms Implemented
 
