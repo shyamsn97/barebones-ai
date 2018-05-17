@@ -37,6 +37,6 @@ class LogisticRegression():
     
     def train(self):
         
-        self.weights = iterative_methods.Batch_Gradient_Descent(self.X,self.y,self.weights,self.gradient_func,self.predict)
+        self.weights = iterative_methods.Mini_Batch_Gradient_Descent(self.X,self.y,self.weights,self.gradient_func,self.predict)
         
         

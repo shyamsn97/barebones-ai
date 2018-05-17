@@ -1,9 +1,9 @@
 import numpy as np
 
-def Batch_Gradient_Descent(X,y,parameters,gradient_func,predict_func,learning_rate=0.001,epochs=200,batch_size=32):
+def Mini_Batch_Gradient_Descent(X,y,parameters,gradient_func,predict_func,learning_rate=0.001,epochs=200,batch_size=32):
     
     """
-    Batch gradient descent
+    Mini Batch gradient descent
     Parameters:
     	X = np.array() data matrix
     	y = np.array() labels
