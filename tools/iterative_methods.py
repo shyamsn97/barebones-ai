@@ -14,22 +14,22 @@ def Mini_Batch_Gradient_Descent(X,y,parameters,gradient_func,predict_func,learni
     for i in range(epochs):
         
         h = predict_func(X,parameters)
-        indices = np.arange(y.shape[0])
+        indices = np.arange(X.shape[0])
         np.random.shuffle(indices)
         sample = 0
-
-        while(sample < y.shape[0]):
-
-            batch_X = X[sample:(sample+batch_size)]
-            batch_y = y[sample:(sample+batch_size)]
-            batch_h = h[sample:(sample+batch_size)]
+        
+        while(sample < X.shape[0]):
+            
+            batch_X = X[indices[sample:(sample+batch_size)]]
+            batch_y = y[indices[sample:(sample+batch_size)]]
+            batch_h = h[indices[sample:(sample+batch_size)]]
             sample += batch_size
 
             parameters = parameters - learning_rate*gradient_func(parameters,batch_X,batch_y)
             
         print("EPOCHS: " + str(i))
                    
-    return parameters
+    return parameters 
 
 def CnstrPD(n, a):
     RM = np.random.randn(n,n) 
