@@ -17,6 +17,9 @@
 
 ### Deep Learning
   - Deep Neural Network
+    Layers:
+      - Input Layers
+      - Dense Layers
 
 ### Optimization Methods
   - Conjugate Gradient Descent
