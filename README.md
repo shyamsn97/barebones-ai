@@ -17,7 +17,7 @@
 
 ### Deep Learning
   - Deep Neural Network
-    Layers:
+    - Layers:
       - Input Layers
       - Dense Layers
 
