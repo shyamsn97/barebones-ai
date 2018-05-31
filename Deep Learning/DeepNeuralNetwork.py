@@ -8,6 +8,7 @@ sys.path.append('../tools/')
 import tools
 
 class DNN():
+    
     """
     Deep Neural Network Template for regression and classification tasks
     Parameters:
@@ -72,9 +73,9 @@ class DNN():
             
             return gradients[::-1]
         
-    def train(self,X,y,optimizer=SGD):
+    def train(self,X,y,optimizer=SGD,lr=0.0001,epochs=100,batch_size=1):
         
-        optimizer(self,X,y)
+        optimizer(self,X,y,learning_rate=lr,epochs=epochs,batch_size=batch_size)
         
     def predict(self,X):
         
@@ -90,5 +91,6 @@ class DNN():
             layer = layer.getNext()
             
         return string
+    
     
     

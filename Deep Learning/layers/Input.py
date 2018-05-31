@@ -6,12 +6,13 @@ import tools
 class Input():
     """
     Input Layer used for the DNN object
-    weights: numpy array() weight matrix
-    output: output of the layer
-    deriv: derivative of activation
-    shape: output shape
-    prevlayer: previous layer
-    next: next layer
+    Parameters:
+        weights: numpy array() weight matrix
+        output: output of the layer
+        deriv: derivative of activation
+        shape: output shape
+        prevlayer: previous layer
+        next: next layer
     """
     def __init__(self,X):
         

@@ -6,14 +6,15 @@ import tools
 class Dense():
     """
     Dense Layer used for the DNN object
-    weights: numpy array() weight matrix
-    output: output of the layer
-    deriv: derivative of activation
-    activation_name: name of activation, used to print
-    activation: activation functions
-    shape: output shape
-    prevlayer: previous layer
-    next: next layer
+    Parameters:
+        weights: numpy array() weight matrix
+        output: output of the layer
+        deriv: derivative of activation
+        activation_name: name of activation, used to print
+        activation: activation functions
+        shape: output shape
+        prevlayer: previous layer
+        next: next layer
     """
     
     def __init__(self,prevlayer,outputdims,activation="sigmoid"):
