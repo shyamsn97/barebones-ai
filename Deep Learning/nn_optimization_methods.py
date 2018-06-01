@@ -5,7 +5,8 @@ def SGD(dnn,X,y,learning_rate=0.0001,epochs=100,batch_size=1):
     """
     Stochastic Gradient Descent for Neural Networks
     """
-    for i in tqdm(range(epochs)):
+    bar = tqdm(np.arange(epochs))
+    for i in bar:
         
         indices = np.arange(X.shape[0])
         np.random.shuffle(indices)
@@ -21,14 +22,15 @@ def SGD(dnn,X,y,learning_rate=0.0001,epochs=100,batch_size=1):
             sample += batch_size
             gradients = dnn.backward_pass(batch_h,batch_y)
             layer = dnn.head.getNext()
-            i = 0
             MSE += np.sum((batch_y - batch_h)**2)
             count += 1
+            j = 0
             while np.all(layer != None):
-                layer.update(layer.getWeights() - learning_rate*gradients[i])
+                layer.update(layer.getWeights() - learning_rate*gradients[j])
                 layer = layer.getNext()
-                i += 1
+                j += 1
                 
-        print("MSE: " + str(MSE/count))
+        string = str(MSE/count)
+        bar.set_description("MSE %s" % string)
                    
     
