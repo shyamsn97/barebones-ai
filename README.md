@@ -8,6 +8,7 @@
   - Linear Distriminant Analysis
   - Linear Regression
   - Logistic Regression
+  - Naive Bayes
 
 ### Unsupervised Learning
   - Fuzzy K Means

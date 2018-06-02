@@ -20,7 +20,7 @@ class DNN():
     
     Use like sequential model from Keras:
         Ex: add a dense layer with 200 neurons and a sigmoid activation function:
-                dnn.add("dense","sigmoid",20)
+                dnn.add("dense","sigmoid",200)
     """
     def __init__(self,X,y):
             
