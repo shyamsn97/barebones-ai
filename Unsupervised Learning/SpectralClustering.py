@@ -30,6 +30,6 @@ class SpectralClustering():
         indices = eigenvalues.argsort()[:k]
         eigenvectors = eigenvectors[:,indices]
         clustering = clustering_algo(eigenvectors)
-        return clustering.predict(k,0)
+        return clustering.predict(k,seed=0)
     
     
