@@ -4,7 +4,6 @@
 
 ### Supervised Learning
   - K Nearest Neighbors
-  - LDU Decomposition
   - Linear Distriminant Analysis
   - Linear Regression
   - Logistic Regression
@@ -28,3 +27,20 @@
   - Mini-Batch Gradient Descent
   - Steepest Gradient Descent
 
+## How to use 
+  ### Supervised, Unsupervised Learning algorithms work like sci-kit learn:  
+
+  #### Unsupervised:
+      fuzzy = FuzzyKmeans(X)
+      predictions = fuzzy.predict(5) # 5 clusters
+
+  #### Supervised:
+      logistic = LogisticRegression(X,y)
+      logistic.train()
+      predictions = logistic.predict(input)
+
+  ### Deep Learning models are similar to Sequential Models from Keras:
+      dnn = DNN(X,y)
+      dnn.add("dense","sigmoid",200) # dense layer w/200 neurons and sigmoid activation
+      dnn.train(X,y)
+      predictions = dnn.predict(input)

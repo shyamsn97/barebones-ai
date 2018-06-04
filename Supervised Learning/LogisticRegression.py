@@ -35,8 +35,8 @@ class LogisticRegression():
             return predictions
         return tools.sigmoid(X.dot(parameters)).astype(float)
     
-    def train(self):
+    def train(self,batch_size=1,epochs=10):
         
-        self.weights = iterative_methods.Mini_Batch_Gradient_Descent(self.X,self.y,self.weights,self.gradient_func,self.predict)
+        self.weights = iterative_methods.Mini_Batch_Gradient_Descent(self.X,self.y,self.weights,self.gradient_func,self.predict,epochs=epochs,batch_size=batch_size)
         
         
