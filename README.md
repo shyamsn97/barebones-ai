@@ -6,7 +6,7 @@
   - [K Nearest Neighbors](Supervised_Learning/KNN.py)
   - [Linear Distriminant Analysis](Supervised_Learning/LinearDiscriminantAnalysis.py)
   - [Linear Regression](Supervised_Learning/LinearRegression.py)
-  - [Logistic Regression(]Supervised_Learning/LogisticRegression.py)
+  - [Logistic Regression](Supervised_Learning/LogisticRegression.py)
   - [Naive Bayes](Supervised_Learning/NaiveBayes.py)
 
 ### Unsupervised Learning
