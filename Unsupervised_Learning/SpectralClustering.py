@@ -1,7 +1,7 @@
 import numpy as np
 sys.path.append('../tools')
 import tools
-sys.path.append('../Unsupervised Learning/')
+sys.path.append('../Unsupervised_Learning/')
 from FuzzyKmeans import FuzzyKmeans
 
 class SpectralClustering():

@@ -3,23 +3,23 @@
 ## Algorithms Implemented
 
 ### Supervised Learning
-  - [K Nearest Neighbors](Supervised Learning/KNN.py)
-  - [Linear Distriminant Analysis](Supervised Learning/LinearDiscriminantAnalysis.py)
-  - [Linear Regression](Supervised Learning/LinearRegression.py)
-  - [Logistic Regression(]Supervised Learning/LogisticRegression.py)
-  - [Naive Bayes](Supervised Learning/NaiveBayes.py)
+  - [K Nearest Neighbors](Supervised_Learning/KNN.py)
+  - [Linear Distriminant Analysis](Supervised_Learning/LinearDiscriminantAnalysis.py)
+  - [Linear Regression](Supervised_Learning/LinearRegression.py)
+  - [Logistic Regression(]Supervised_Learning/LogisticRegression.py)
+  - [Naive Bayes](Supervised_Learning/NaiveBayes.py)
 
 ### Unsupervised Learning
-  - [Fuzzy K Means](Unsupervised Learning/FuzzyKmeans.py)
-  - [K Means / K Medians](Unsupervised Learning/KMeans_Medians.py)
-  - [PCA](Unsupervised Learning/PCA.py)
-  - [Spectral Clustering](Unsupervised Learning/SpectralClustering.py)
+  - [Fuzzy K Means](Unsupervised_Learning/FuzzyKmeans.py)
+  - [K Means / K Medians](Unsupervised_Learning/KMeans_Medians.py)
+  - [PCA](Unsupervised_Learning/PCA.py)
+  - [Spectral Clustering](Unsupervised_Learning/SpectralClustering.py)
 
 ### Deep Learning
-  - [Deep Neural Network](Deep Learning/DeepNeuralNetwork.py)
+  - [Deep Neural Network](Deep_Learning/DeepNeuralNetwork.py)
     - Layers:
-      - [Input Layers](Deep Learning/layers/Input.py)
-      - [Dense Layers](Deep Learning/layers/Dense.py)
+      - [Input Layers](Deep_Learning/layers/Input.py)
+      - [Dense Layers](Deep_Learning/layers/Dense.py)
 
 ### Optimization Methods
   - [Conjugate Gradient Descent](tools/iterative_methods.py)
@@ -45,4 +45,4 @@
       dnn.train(X,y)
       predictions = dnn.predict(input)
 
-## [Examples](Applications/)
+### [Examples](Applications/)
