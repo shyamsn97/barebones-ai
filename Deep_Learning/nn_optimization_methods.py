@@ -22,10 +22,12 @@ def SGD(dnn,X,y,learning_rate=0.0001,epochs=100,batch_size=1):
             sample += batch_size
             gradients = dnn.backward_pass(batch_h,batch_y)
             layer = dnn.head.getNext()
-            MSE += np.sum((batch_y - batch_h)**2)
+            MSE += (1/(batch_size))*np.sum((batch_y - batch_h)**2)
             count += 1
             j = 0
+
             while np.all(layer != None):
+
                 new_weights = layer.getWeights()
                 new_weights[0] -= learning_rate*gradients[j][0]
                 new_weights[1] -= learning_rate*gradients[j][1]
