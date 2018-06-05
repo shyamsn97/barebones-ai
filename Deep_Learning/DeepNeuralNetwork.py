@@ -62,13 +62,15 @@ class DNN():
             
             layer = self.outlayer
             cache = np.array(np.sum(predictions - y))
-            derivative = layer.getPrev().dot(cache*(layer.deriv),True)
-            gradients.append(derivative)
+            w_derivative = layer.getPrev().dot(cache*(layer.deriv),True)
+            b_derivative = cache*(layer.deriv)
+            gradients.append([w_derivative,b_derivative])
             layer = layer.getPrev()
-            
             while np.all(layer.getPrev() != None):
-                cache = (cache.dot(layer.getNext().getWeights().T))*layer.deriv
-                gradients.append(layer.getPrev().dot(cache,True))
+                cache = (cache.dot(layer.getNext().getWeights()[0].T))*layer.deriv
+                w_derivative = layer.getPrev().dot(cache,True)
+                b_derivative = cache
+                gradients.append([w_derivative,b_derivative])
                 layer = layer.getPrev()
             
             return gradients[::-1]

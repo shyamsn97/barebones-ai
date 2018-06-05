@@ -19,12 +19,13 @@ class Dense():
     
     def __init__(self,prevlayer,outputdims,activation="sigmoid"):
         
-        self.weights = np.random.uniform(-1,1,size=(prevlayer.shape[1],outputdims))
+        self.weights = [np.random.uniform(-1,1,size=(prevlayer.shape[1],outputdims)),np.random.uniform(-1,1,size=(1,outputdims))]
         self.output = 0
         self.deriv = 1
         self.activation_name = activation
         self.activation = None
-        self.shape = (None,outputdims)
+        self.print_shape = (None,outputdims)
+        self.shape = (prevlayer.shape[1],outputdims)
         self.prevlayer = prevlayer
         self.next = None
         
@@ -58,13 +59,13 @@ class Dense():
         
     def foward(self):
         
-        layer_mul = self.prevlayer.dot(self.weights)
+        layer_mul = self.prevlayer.dot(self.weights[0]) + self.weights[1]
         self.output = self.activation(layer_mul)
         self.deriv = self.activation(layer_mul,True)
     
     def predict(self,X):
         
-        return self.activation(X.dot(self.weights))
+        return self.activation(X.dot(self.weights[0]) + self.weights[1])
         
     def update(self,X):
 
@@ -79,15 +80,15 @@ class Dense():
         
     def __repr__(self):
         
-        string = "Dense: " + "activation: " + self.activation_name +  ", weight shape: " + str(self.weights.shape) + ", output shape: " + str(self.shape)
-        string = string + ", parameters: " + str(self.weights.shape[0]*self.weights.shape[1])
+        string = "Dense: " + "activation: " + self.activation_name +  ", weight shape: " + str(self.weights[0].shape) + ", output shape: " + str(self.print_shape)
+        string = string + ", parameters: " + str(self.weights[0].shape[0]*self.weights[0].shape[1])
         string = string + '\n' + "-----------------------------------------------------------------" + '\n'
         return string  
     
     def __str__(self):
         
-        string = "Dense: " + "activation: " + self.activation_name +  ", weight shape: " + str(self.weights.shape) + ", output shape: " + str(self.shape)
-        string = string + ", parameters: " + str(self.weights.shape[0]*self.weights.shape[1])
+        string = "Dense: " + "activation: " + self.activation_name +  ", weight shape: " + str(self.weights[0].shape) + ", output shape: " + str(self.print_shape)
+        string = string + ", parameters: " + str(self.weights[0].shape[0]*self.weights[0].shape[1])
         string = string + '\n' + "-----------------------------------------------------------------" + '\n'
-        return string  
+        return string   
          

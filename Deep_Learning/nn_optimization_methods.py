@@ -26,7 +26,10 @@ def SGD(dnn,X,y,learning_rate=0.0001,epochs=100,batch_size=1):
             count += 1
             j = 0
             while np.all(layer != None):
-                layer.update(layer.getWeights() - learning_rate*gradients[j])
+                new_weights = layer.getWeights()
+                new_weights[0] -= learning_rate*gradients[j][0]
+                new_weights[1] -= learning_rate*gradients[j][1]
+                layer.update(new_weights)
                 layer = layer.getNext()
                 j += 1
                 
