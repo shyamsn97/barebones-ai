@@ -1,4 +1,4 @@
-## Popular machine/deep learning algorithms and strategies implemented from scratch using numpy and applied on real-life data 
+## Popular machine/deep learning algorithms and strategies implemented from scratch using primitive packages, such as numpy and pandas, to make clear understanding of the mathematical concepts behind them. Each algorithm is applied on real-life data 
 
 ## Algorithms Implemented
 
@@ -8,6 +8,7 @@
   - [Linear Regression](Supervised_Learning/LinearRegression.py)
   - [Logistic Regression](Supervised_Learning/LogisticRegression.py)
   - [Naive Bayes](Supervised_Learning/NaiveBayes.py)
+  - [Softmax Regression](Supervised_Learning/SoftmaxRegression.py)
 
 ### Unsupervised Learning
   - [Fuzzy K Means](Unsupervised_Learning/FuzzyKmeans.py)

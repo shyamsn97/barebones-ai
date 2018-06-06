@@ -5,15 +5,13 @@ import tools
 import iterative_methods
 
 class LogisticRegression():
-    
     """
     Logistic Regression class for binary classification
     Parameters:
-        X: numpy array() data matrix, must have shape of length two (for vectors, reshape with column = 1)
+        X: numpy array() data matrix
         y: numpy array() class labels, must be numeric
         weights: numpy array() weights for prediction
     """
-
     def __init__(self,X,y):
         
         self.X = X
@@ -25,9 +23,9 @@ class LogisticRegression():
         h = self.predict(X,parameters)
         return (X.T.dot(h-y))
     
-    def predict(self,X,parameters = 0):
+    def predict(self,X,parameters=None):
         
-        if np.all(parameters == 0):
+        if np.all(parameters == None):
             parameters = self.weights
             predictions = tools.sigmoid(X.dot(parameters)).astype(float)
             predictions[predictions > 0.5] = 1
@@ -35,8 +33,9 @@ class LogisticRegression():
             return predictions
         return tools.sigmoid(X.dot(parameters)).astype(float)
     
-    def train(self,batch_size=1,epochs=10):
+    def train(self,batch_size=1,epochs=100,learning_rate=0.001):
         
-        self.weights = iterative_methods.Mini_Batch_Gradient_Descent(self.X,self.y,self.weights,self.gradient_func,self.predict,epochs=epochs,batch_size=batch_size)
+        self.weights = iterative_methods.Mini_Batch_Gradient_Descent(self.X,self.y,
+            self.weights,self.gradient_func,self.predict,epochs=epochs,batch_size=batch_size,loss="cross_entropy",learning_rate=learning_rate)
         
-        
+        print("Train Accuracy: %s" % str(tools.calc_accuracy(self.predict(self.X),self.y)))

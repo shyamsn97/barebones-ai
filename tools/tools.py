@@ -3,12 +3,31 @@ import numpy as np
 
 def sigmoid(x,derivative=False):
 	'''
-	sigmoid function, set derivative = true to get the derivative
+	   sigmoid function, set derivative = true to get the derivative
 	'''
 	if derivative==True:
 		return 1/(1+np.e**-(x*1.0))*(1-(1/(1+np.e**-(x*1.0))))
 	else:
 		return 1/(1+np.e**-(x*1.0))
+
+def softmax(x,derivative=False):
+    '''
+        stable softmax function, set derivative = true to get the derivative
+    '''
+    vecs = np.exp(x  - np.max(x))
+    if derivative==True:
+        if len(x.shape) > 1:
+            s = vecs/(np.sum(vecs,axis=1).reshape(x.shape[0],1))
+            return s*(1-s)
+        else:
+            s = vecs/(np.sum(vecs))
+            return s*(1-s)
+    else:
+        if len(x.shape) > 1:
+            return vecs/(np.sum(vecs,axis=1).reshape(x.shape[0],1))
+        else:
+            return vecs/(np.sum(vecs))
+
 
 def compute_covariance(X,col=True, correlation=False):
     '''
@@ -69,16 +88,10 @@ def cross_val_split_set(X,portion,y=None):
         return X[traininds],X[testinds],y[traininds],y[testinds]
 
 
-def calc_accuracy(predictions,ytest):
-    """
-    Calculates accuracy for classification tasks
-    """
-    acc = ytest - predictions
-    return np.where(acc == 0)[0].shape[0]/ytest.shape[0]
 
 def bucket(data):
     """
-    buckets continuous data by percentiles
+        buckets continuous data by percentiles
     """
     upper = np.percentile(data,75)
     mid = np.percentile(data,50)
@@ -124,3 +137,28 @@ def generate_similarity_matrix(X,sim_type='l2'):
     for i in range(n):
         newmatrix[i] = (gen_distance_similarities(X[i].reshape(1,p),X,sim_type)).reshape(1,n)
     return newmatrix
+
+#Accuracy and loss measurements
+def calc_accuracy(predictions,ytest):
+    """
+        Calculates accuracy for classification tasks
+    """
+    acc = ytest - predictions
+    return np.where(acc == 0)[0].shape[0]/ytest.shape[0]
+
+def cross_entropy(predictions,y):
+    """
+        categorical cross entropy
+    """
+    m = predictions.shape[0]
+    loss = -1*(1/m)*np.sum(y*np.log(predictions)) 
+    return loss
+
+def mean_squared_error(predictions,y):
+    """
+        mean squared error
+    """
+    m = predictions.shape[0]
+    loss = (-1/m)*np.sum(predictions - y)
+    return loss
+

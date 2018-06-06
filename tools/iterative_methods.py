@@ -1,6 +1,10 @@
 import numpy as np
+import sys
+sys.path.append('../tools')
+import tools
+from tqdm import tqdm
 
-def Mini_Batch_Gradient_Descent(X,y,parameters,gradient_func,predict_func,learning_rate=0.001,epochs=200,batch_size=32):
+def Mini_Batch_Gradient_Descent(X,y,parameters,gradient_func,predict_func,learning_rate=0.001,epochs=200,batch_size=1,loss="mse"):
     
     """
     Mini Batch gradient descent
@@ -11,9 +15,10 @@ def Mini_Batch_Gradient_Descent(X,y,parameters,gradient_func,predict_func,learni
     	gradients_func = function to calculate the gradient
 		predict_func = function to predict labels with data matrix
     """
-    for i in range(epochs):
+    h = predict_func(X,parameters)
+    bar = tqdm(np.arange(epochs))
+    for i in bar:
         
-        h = predict_func(X,parameters)
         indices = np.arange(X.shape[0])
         np.random.shuffle(indices)
         sample = 0
@@ -26,9 +31,13 @@ def Mini_Batch_Gradient_Descent(X,y,parameters,gradient_func,predict_func,learni
             sample += batch_size
 
             parameters = parameters - learning_rate*gradient_func(parameters,batch_X,batch_y)
-            
-        print("EPOCHS: " + str(i))
-                   
+        
+        h = predict_func(X,parameters)
+        if loss == "mse":
+            bar.set_description("MSE %s" % str(tools.mean_squared_error(h,y)))
+        elif loss == "cross_entropy":
+            bar.set_description("Cross Entropy %s" % str(tools.cross_entropy(h,y)))
+
     return parameters 
 
 def CnstrPD(n, a):
