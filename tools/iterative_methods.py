@@ -5,7 +5,6 @@ import tools
 from tqdm import tqdm
 
 def Mini_Batch_Gradient_Descent(X,y,parameters,gradient_func,predict_func,learning_rate=0.001,epochs=200,batch_size=1,loss="mse"):
-    
     """
     Mini Batch gradient descent
     Parameters:

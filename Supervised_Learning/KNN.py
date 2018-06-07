@@ -4,7 +4,6 @@ sys.path.append('../tools')
 import tools
 
 class KNN(): 
-    
     """
     K nearest neighbor classifier. Assign a given vector to a class based on l2 distance
     Parameters:
@@ -28,8 +27,7 @@ class KNN():
             indices = dist.argsort()[:k]
             classcounts = y[indices]
             vals,counts = np.unique(classcounts,return_counts=True)
-            print(indices)
-            ind=np.argmax(counts)
+            ind = np.argmax(counts)
             classpick = vals[ind]
             classes.append(classpick)
             

@@ -4,7 +4,6 @@ sys.path.append('../tools')
 import tools
 
 class PCA():
-    
     """
     Dimensionality reduction using the diagonalization of a covariance matrix
     Can specify whether to use calculate the covariance matrix of the rows or columns of a given data matrix

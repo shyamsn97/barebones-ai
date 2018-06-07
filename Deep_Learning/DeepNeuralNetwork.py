@@ -8,7 +8,6 @@ sys.path.append('../tools/')
 import tools
 
 class DNN():
-    
     """
     Deep Neural Network Template for regression and classification tasks
     Parameters:

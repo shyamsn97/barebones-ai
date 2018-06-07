@@ -4,7 +4,6 @@ sys.path.append('../tools')
 import tools
 
 class LDA():
-    
     """
     Linear Discriminant Analysis Classifier using Gaussian assumptions
     Parameters:

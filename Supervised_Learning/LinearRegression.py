@@ -4,7 +4,6 @@ sys.path.append('../tools')
 import tools
 
 class LinearRegression():
-
 	"""
     Linear Regression class, with kfold cross validation
     Parameters:

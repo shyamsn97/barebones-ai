@@ -23,13 +23,13 @@ class SpectralClustering():
         laplacian = distances_inv.dot(l)
         return laplacian
     
-    def predict(self,k,distances='l2',clustering_algo=FuzzyKmeans):
+    def predict(self,k,distances='l2',clustering_algo=KMeans_Medians):
         
         laplacian = self.generate_normalized_laplacian(distances)
         eigenvalues, eigenvectors = np.linalg.eig(laplacian)
         indices = eigenvalues.argsort()[:k]
         eigenvectors = eigenvectors[:,indices]
         clustering = clustering_algo(eigenvectors)
-        return clustering.predict(k,seed=0)
+        return clustering.predict(k)
     
     

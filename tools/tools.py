@@ -1,6 +1,6 @@
 import numpy as np
 
-
+#activations
 def sigmoid(x,derivative=False):
 	'''
 	   sigmoid function, set derivative = true to get the derivative
@@ -28,7 +28,7 @@ def softmax(x,derivative=False):
         else:
             return vecs/(np.sum(vecs))
 
-
+#similarity measurements
 def compute_covariance(X,col=True, correlation=False):
     '''
         computes covariance using definition 1/n(XXT) - mumuT
@@ -69,39 +69,6 @@ def standardize(X):
 
 	return newx.dot(varmatrix)
 
-def cross_val_split_set(X,portion,y=None):
-    '''
-    use:
-        X = iris.data
-        y = iris.target
-        X_train, X_test, y_train, y_test = split_set(X,0.1,y)
-    '''
-    X = np.array(X)
-    y = np.array(y)
-    size = int(X.shape[0]*portion)
-    indexlist = np.arange(X.shape[0])
-    testinds = np.random.choice(indexlist, size, replace=False)
-    traininds = np.array([x for x in range(X.shape[0]) if x not in testinds])  
-    if np.all(y == None):
-        return X[traininds],X[testinds]
-    else:
-        return X[traininds],X[testinds],y[traininds],y[testinds]
-
-
-
-def bucket(data):
-    """
-        buckets continuous data by percentiles
-    """
-    upper = np.percentile(data,75)
-    mid = np.percentile(data,50)
-    lower = np.percentile(data,25)
-    data[(data <= lower)] = 0
-    data[(data > lower) & (data <= mid)] = 1
-    data[(data < upper) & (data > mid)] = 2
-    data[(data >= upper)] = 3
-    return data
-
 def cosine_distance(x,y):
     
     num = np.dot(x,y)
@@ -137,6 +104,40 @@ def generate_similarity_matrix(X,sim_type='l2'):
     for i in range(n):
         newmatrix[i] = (gen_distance_similarities(X[i].reshape(1,p),X,sim_type)).reshape(1,n)
     return newmatrix
+
+#EDA and data manipulation
+def cross_val_split_set(X,portion,y=None):
+    '''
+    use:
+        X = iris.data
+        y = iris.target
+        X_train, X_test, y_train, y_test = split_set(X,0.1,y)
+    '''
+    X = np.array(X)
+    y = np.array(y)
+    size = int(X.shape[0]*portion)
+    indexlist = np.arange(X.shape[0])
+    testinds = np.random.choice(indexlist, size, replace=False)
+    traininds = np.array([x for x in range(X.shape[0]) if x not in testinds])  
+    if np.all(y == None):
+        return X[traininds],X[testinds]
+    else:
+        return X[traininds],X[testinds],y[traininds],y[testinds]
+
+
+
+def bucket(data):
+    """
+        buckets continuous data by percentiles
+    """
+    upper = np.percentile(data,75)
+    mid = np.percentile(data,50)
+    lower = np.percentile(data,25)
+    data[(data <= lower)] = 0
+    data[(data > lower) & (data <= mid)] = 1
+    data[(data < upper) & (data > mid)] = 2
+    data[(data >= upper)] = 3
+    return data
 
 #Accuracy and loss measurements
 def calc_accuracy(predictions,ytest):

@@ -17,13 +17,14 @@ class KMeans_Medians():
         self.centers = []
         
     def calculate_centers(self,dist=1):
+        X = self.X
         if dist == 1:
             self.centers = np.array(list(map(lambda x : np.mean(X[x,:],axis=0),self.center_assignments.values())))
         elif dist == 2:
             self.centers = np.array(list(map(lambda x : np.median(X[x,:],axis=0),self.center_assignments.values())))
 
 
-    def predict(self,k,seed,exit=0.01,dist_type = "mean",maxiterations=100):
+    def predict(self,k,seed=0,exit=0.01,dist_type = "mean",maxiterations=100):
         self.center_assignments = {}
         self.centers = []
         X = self.X
