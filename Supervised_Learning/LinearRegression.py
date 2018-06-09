@@ -14,10 +14,14 @@ class LinearRegression():
 
 		self.X = X
 		self.y = y
+		self.weights = None
 
-	def predict(self,normal=True):
-		if normal == True:
-			return np.linalg.inv(X.T.dot(X)).dot(X.T.dot(y))
+	def fit(self):
+		X = self.X
+		self.weights = np.linalg.inv(X.T.dot(X)).dot(X.T.dot(y))
+		
+	def predict(self,X):
+		return X.dot(self.weights)
 
 	def k_fold_cross_val(k,seed): #input seed = -1 for complete random output
 

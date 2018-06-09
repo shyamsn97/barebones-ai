@@ -10,8 +10,7 @@ class SpectralClustering():
         Parameters:
             X: numpy array() data matrix
     """
-      def __init__(self,X):
-        
+    def __init__(self,X):
         self.X = X
         
     def generate_normalized_laplacian(self,distances='l2'):
@@ -30,6 +29,7 @@ class SpectralClustering():
         indices = eigenvalues.argsort()[:k]
         eigenvectors = eigenvectors[:,indices]
         clustering = clustering_algo(eigenvectors)
-        return clustering.predict(k)
+        clustering.fit(k)
+        return clustering.predict(eigenvectors)
     
     

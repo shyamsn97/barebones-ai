@@ -48,12 +48,13 @@ def l2distance(X,y):
     '''
 	   gets euclidian distance between vector X and matrix(or vector) y
     '''
+    if len(X.shape) < 2:
+        X = X.reshape(1,X.shape[0])
     ones = np.ones(y.shape[0]).reshape(y.shape[0],1)
     X = ones.dot(X)
-    dist = (y - X)**2
-    dist = np.sqrt(np.sum(dist,axis=1))
+    dist = (y - X)
 
-    return dist
+    return np.linalg.norm(dist,axis=1)
 
 def standardize(X):
 	'''

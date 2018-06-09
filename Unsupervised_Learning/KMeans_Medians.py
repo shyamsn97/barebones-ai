@@ -24,7 +24,7 @@ class KMeans_Medians():
             self.centers = np.array(list(map(lambda x : np.median(X[x,:],axis=0),self.center_assignments.values())))
 
 
-    def predict(self,k,seed=0,exit=0.01,dist_type = "mean",maxiterations=100):
+    def fit(self,k,seed=0,exit=0.01,dist_type = "mean",maxiterations=100):
         self.center_assignments = {}
         self.centers = []
         X = self.X
@@ -52,9 +52,12 @@ class KMeans_Medians():
                     self.calculate_centers(1)
                 elif dist_type == "median":
                     self.calculate_centers(2)
-                    
-        end = np.zeros(X.shape[0])
-        for i in range(k):
-            end[self.center_assignments[i]] = i
-        
-        return end
+        self.centers = np.array(self.centers)            
+
+    def predict(self,X):
+            clusters = np.zeros(X.shape[0])
+            for i in range(X.shape[0]):
+                clusters[i] = np.argmin(tools.l2distance(X[i],self.centers))
+            return clusters
+
+

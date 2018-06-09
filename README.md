@@ -33,17 +33,18 @@
 
   #### Unsupervised:
       fuzzy = FuzzyKmeans(X)
-      predictions = fuzzy.predict(5) # 5 clusters
+      fuzzy.fit(5) # 5 clusters
+      predictions = fuzzy.predict(X) 
 
   #### Supervised:
       logistic = LogisticRegression(X,y)
-      logistic.train()
+      logistic.train(epochs=100)
       predictions = logistic.predict(input)
 
   ### Deep Learning models are similar to Sequential Models from Keras:
       dnn = DNN(X,y)
       dnn.add("dense","sigmoid",200) # dense layer w/200 neurons and sigmoid activation
-      dnn.train(X,y)
+      dnn.train(X,y,epochs=100)
       predictions = dnn.predict(input)
 
 ### [Examples](Applications/)
