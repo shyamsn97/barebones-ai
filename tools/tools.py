@@ -164,3 +164,37 @@ def mean_squared_error(predictions,y):
     loss = (-1/m)*np.sum(predictions - y)
     return loss
 
+#plotting vals
+def plot2D(X,y,classes=False,title="Plotted Vals"):
+    
+    fig, ax = plt.subplots()
+    if len(X.shape) >= 2:
+        pca = PCA(X)
+        if classes == True:
+            X = pca.project(2)
+            for class_val in np.unique(y):
+                i = np.where(y == class_val)[0]
+                ax.scatter(x=X[i,0],y=X[i,1], label=class_val)
+                plt.ylabel("PC 2")
+                plt.xlabel("PC 1")
+        else:
+            X = pca.project(1)
+            ax.scatter(X,y)
+            plt.ylabel("Y")
+            plt.xlabel("X")
+    else:
+        if classes == True:
+            for class_val in np.unique(y):
+                i = np.where(y == class_val)[0]
+                ax.scatter(x=X,y=y, label=class_val)
+                plt.ylabel("PC 2")
+                plt.xlabel("PC 1")
+        else:
+            ax.scatter(x=X,y=y)
+            plt.ylabel("Y")
+            plt.xlabel("X")
+            
+    ax.legend()
+    plt.title(title)
+    plt.figure(figsize=(20,20))
+    plt.show()  
