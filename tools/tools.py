@@ -1,4 +1,8 @@
 import numpy as np
+import matplotlib.pyplot as plt
+import sys
+sys.path.append("../Unsupervised_Learning/")
+from PCA import PCA
 
 #activations
 def sigmoid(x,derivative=False):
