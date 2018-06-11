@@ -23,7 +23,7 @@
       - [Dense Layers](Deep_Learning/layers/Dense.py)
       - [Softmax Layers](Deep_Learning/layers/Softmax.py)
     - Optimization Methods:
-      - [Stochastic Gradient Descent](Deep_Learning/nn_optimization.py)
+      - [Stochastic Gradient Descent](Deep_Learning/nn_optimization_methods.py)
 
 ### Optimization Methods
   - [Conjugate Gradient Descent](tools/iterative_methods.py)
