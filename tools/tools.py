@@ -149,6 +149,8 @@ def calc_accuracy(predictions,ytest):
     """
         Calculates accuracy for classification tasks
     """
+    if len(ytest.shape) > 1:
+        ytest = np.argmax(ytest,axis=1)
     acc = ytest - predictions
     return np.where(acc == 0)[0].shape[0]/ytest.shape[0]
 
@@ -165,7 +167,7 @@ def mean_squared_error(predictions,y):
         mean squared error
     """
     m = predictions.shape[0]
-    loss = (-1/m)*np.sum(predictions - y)
+    loss = (1/m)*(np.sum((y - predictions)**2))
     return loss
 
 #plotting vals

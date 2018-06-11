@@ -3,37 +3,29 @@ import sys
 sys.path.append('../tools/')
 import tools
 
-class Dense():
+class Softmax():
     """
-    Dense Layer used for the DNN object
+    Softmax Layer used for the DNN object
     Parameters:
         weights: numpy array() weight matrix
         output: output of the layer
         deriv: derivative of activation
-        activation_name: name of activation, used to print
-        activation: activation functions
         shape: output shape
         prevlayer: previous layer
         next: next layer
     """
     
-    def __init__(self,prevlayer,outputdims,activation="sigmoid"):
+    def __init__(self,prevlayer,outputdims):
         
         self.weights = [np.random.uniform(-1,1,size=(prevlayer.shape[1],outputdims)),np.random.uniform(-1,1,size=(1,outputdims))]
         self.output = 0
         self.deriv = 1
-        self.activation_name = activation
-        self.activation = None
+        self.activation_name = "softmax"
+        self.activation = tools.softmax
         self.print_shape = (None,outputdims)
         self.shape = (prevlayer.shape[1],outputdims)
         self.prevlayer = prevlayer
         self.next = None
-        
-        if activation == "sigmoid":
-            self.activation = tools.sigmoid
-            
-        elif activation == "linear":
-            self.activation = self.linear
         
     def getWeights(self):
         
@@ -71,23 +63,16 @@ class Dense():
 
         self.weights = X
         
-    def linear(self,X,deriv=False):
-        
-        if deriv == True:
-            return 1
-        else:
-            return X
-        
     def __repr__(self):
         
-        string = "Dense: " + "activation: " + self.activation_name +  ", weight shape: " + str(self.weights[0].shape) + ", output shape: " + str(self.print_shape)
+        string = "Softmax: " + "activation: " + self.activation_name +  ", weight shape: " + str(self.weights[0].shape) + ", output shape: " + str(self.print_shape)
         string = string + ", parameters: " + str(self.weights[0].shape[0]*self.weights[0].shape[1])
         string = string + '\n' + "-----------------------------------------------------------------" + '\n'
         return string  
     
     def __str__(self):
         
-        string = "Dense: " + "activation: " + self.activation_name +  ", weight shape: " + str(self.weights[0].shape) + ", output shape: " + str(self.print_shape)
+        string = "Softmax: " + "activation: " + self.activation_name +  ", weight shape: " + str(self.weights[0].shape) + ", output shape: " + str(self.print_shape)
         string = string + ", parameters: " + str(self.weights[0].shape[0]*self.weights[0].shape[1])
         string = string + '\n' + "-----------------------------------------------------------------" + '\n'
         return string   

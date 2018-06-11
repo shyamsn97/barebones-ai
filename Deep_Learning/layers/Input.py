@@ -45,7 +45,7 @@ class Input():
             return self.output.T.dot(X)
         return self.output.dot(X)
     
-    def foward(self):
+    def forward(self):
         self.output = self.weights
     
     def predict(self):

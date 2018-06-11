@@ -21,6 +21,9 @@
     - Layers:
       - [Input Layers](Deep_Learning/layers/Input.py)
       - [Dense Layers](Deep_Learning/layers/Dense.py)
+      - [Softmax Layers](Deep_Learning/layers/Softmax.py)
+    - Optimization Methods:
+      - [Stochastic Gradient Descent](Deep_Learning/nn_optimization.py)
 
 ### Optimization Methods
   - [Conjugate Gradient Descent](tools/iterative_methods.py)
