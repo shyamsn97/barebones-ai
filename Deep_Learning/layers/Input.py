@@ -13,6 +13,7 @@ class Input():
         shape: output shape
         prevlayer: previous layer
         next: next layer
+        type: type of layer
     """
     def __init__(self,X):
         
@@ -22,6 +23,7 @@ class Input():
         self.shape = X.shape
         self.prevlayer = None
         self.next = None
+        self.type = "Input"
         
     def getWeights(self):
         
@@ -53,6 +55,11 @@ class Input():
     
     def update(self,X):
         self.weights = X
+        self.shape = X.shape
+
+    def copy(self):
+
+        return self
     
     def __repr__(self):
         

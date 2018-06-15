@@ -1,19 +1,14 @@
 import numpy as np
 import sys
-from tqdm import tqdm
 from nn_optimization_methods import SGD
 from layers.Dense import Dense
 from layers.Input import Input
 from layers.Softmax import Softmax
-sys.path.append('../tools/')
-import tools
 
 class DNN():
     """
     Deep Neural Network Template for regression and classification tasks
     Parameters:
-        X: numpy array() data matrix
-        y: numpy array() response variables, must be numeric
         output: numpy array() outputs
         outlayer: output layer
         head: input layer
@@ -22,26 +17,27 @@ class DNN():
     Use like sequential model from Keras:
         Ex: add a dense layer with 200 neurons and a sigmoid activation function:
                 dnn.add("dense","sigmoid",200)
-
-        For classification tasks, the response/class values should be reshaped as a one hot matrix.
     """
-    def __init__(self,X,y):
+    def __init__(self):
             
-        self.X = X
-        self.y = y
-        self.output = 0
-        self.outlayer = Input(self.X)
-        self.head = self.outlayer
-        self.loss = "mse"
+        self.output = None
+        self.outlayer = None
+        self.head = None
+        self.loss = "MSE"
     
-    def add(self,layertype,neurons,activation="sigmoid"):
-        
-        if layertype == "dense":
-                layer = Dense(self.outlayer,neurons,activation)
-                self.outlayer.setNext(layer)
-                self.outlayer = layer
-        elif layertype == "softmax":
-            layer = Softmax(self.outlayer,neurons)
+    def transfer_layer(self,layer):
+        self.head = layer
+                
+    def add(self,layer):
+
+        if np.all(self.head == None):
+            if layer.type == "Input":
+                self.head = layer
+                self.outlayer = self.head
+            else:
+                print("Must start with an Input Layer!")
+        else:
+            layer.initialize(self.outlayer)
             self.outlayer.setNext(layer)
             self.outlayer = layer
             
@@ -82,10 +78,12 @@ class DNN():
         return gradients[::-1]
         
     def train(self,X,y,optimizer=SGD,lr=0.0001,epochs=100,batch_size=1,loss="mse"):
+
         self.loss = loss
         optimizer(self,X,y,learning_rate=lr,epochs=epochs,batch_size=batch_size,loss=loss)
         
     def predict(self,X):
+
         if self.loss == "cross_entropy":
             return np.argmax(self.forward(X),axis=1)
         return self.forward(X)

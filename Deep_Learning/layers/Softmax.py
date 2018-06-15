@@ -13,20 +13,29 @@ class Softmax():
         shape: output shape
         prevlayer: previous layer
         next: next layer
+        type: type of layer
     """
     
-    def __init__(self,prevlayer,outputdims):
+    def __init__(self,outputdims):
         
-        self.weights = [np.random.uniform(-1,1,size=(prevlayer.shape[1],outputdims)),np.random.uniform(-1,1,size=(1,outputdims))]
+        self.outputdims = outputdims
+        self.weights = None
         self.output = 0
         self.deriv = 1
         self.activation_name = "softmax"
         self.activation = tools.softmax
         self.print_shape = (None,outputdims)
-        self.shape = (prevlayer.shape[1],outputdims)
-        self.prevlayer = prevlayer
+        self.shape = None
+        self.prevlayer = None
         self.next = None
-        
+        self.type = "Softmax"
+    
+    def initialize(self,prevlayer):
+
+        self.weights = [np.random.uniform(-1,1,size=(prevlayer.shape[1],self.outputdims)),np.random.uniform(-1,1,size=(1,self.outputdims))]
+        self.shape = (prevlayer.shape[1],self.outputdims)
+        self.prevlayer = prevlayer
+
     def getWeights(self):
         
         return self.weights
