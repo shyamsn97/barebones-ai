@@ -33,7 +33,7 @@ class SoftmaxRegression():
             return predictions
         return tools.softmax(X.dot(parameters)).astype(float)
     
-    def train(self,batch_size=1,epochs=10,learning_rate=0.001):
+    def train(self,batch_size=1,epochs=100,learning_rate=0.001):
         
         self.weights = iterative_methods.Mini_Batch_Gradient_Descent(self.X,self.y,self.weights,self.gradient_func,self.predict,epochs=epochs,batch_size=batch_size,loss="cross_entropy",learning_rate=learning_rate)
         
