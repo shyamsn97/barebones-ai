@@ -44,7 +44,7 @@
   #### Supervised:
       # X = input data, y = response variables
       logistic = LogisticRegression(X,y)
-      logistic.train(epochs=100)
+      logistic.fit(epochs=100)
       predictions = logistic.predict(input)
 
   ### Deep Learning models are similar to Sequential Models from Keras:
@@ -53,7 +53,7 @@
       dnn.add(Input(X))
       dnn.add(Dense(200,"sigmoid")) # dense layer w/ 200 neurons and sigmoid activation
       dnn.add(Softmax(10)) # Softmax layer mapping to 10 classes
-      dnn.train(X,y,lr=0.001,epochs=100) #train for 100 epochs w/ a learning rate of 0.001
+      dnn.fit(X,y,lr=0.001,epochs=100) #train for 100 epochs w/ a learning rate of 0.001
       predictions = dnn.predict(input)
 
 ### [Examples](Applications/)

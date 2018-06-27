@@ -63,7 +63,7 @@ class DNN():
         gradients = []
                     
         layer = self.outlayer
-        cache = np.array((predictions - y))
+        cache = (1/predictions.shape[0])*np.array((predictions - y))
         w_derivative = layer.getPrev().dot(cache*(layer.deriv),True)
         b_derivative = cache*(layer.deriv)
         gradients.append([w_derivative,b_derivative])
@@ -77,7 +77,7 @@ class DNN():
 
         return gradients[::-1]
         
-    def train(self,X,y,optimizer=SGD,lr=0.0001,epochs=100,batch_size=1,loss="mse"):
+    def fit(self,X,y,optimizer=SGD,lr=0.0001,epochs=100,batch_size=1,loss="mse"):
 
         self.loss = loss
         optimizer(self,X,y,learning_rate=lr,epochs=epochs,batch_size=batch_size,loss=loss)

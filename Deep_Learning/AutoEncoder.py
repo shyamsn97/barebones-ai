@@ -66,9 +66,9 @@ class AutoEncoder():
             layer = layer.getNext()
             count += 1
             
-    def train(self,learning_rate=0.0001,epochs=100,loss="mse"):
+    def fit(self,learning_rate=0.0001,epochs=100,loss="mse"):
         
-        self.full_model.train(self.X,self.X,lr=learning_rate,epochs=epochs,loss=loss)
+        self.full_model.fit(self.X,self.X,lr=learning_rate,epochs=epochs,loss=loss)
         self.finalize_encoder_decoder()
     
     def predict(self,X):
