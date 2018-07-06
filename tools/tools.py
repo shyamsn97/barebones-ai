@@ -9,7 +9,7 @@ def sigmoid(x,derivative=False):
 	'''
 	   sigmoid function, set derivative = true to get the derivative
 	'''
-	if derivative==True:
+	if derivative == True:
 		return 1/(1+np.e**-(x*1.0))*(1-(1/(1+np.e**-(x*1.0))))
 	else:
 		return 1/(1+np.e**-(x*1.0))
@@ -19,7 +19,7 @@ def softmax(x,derivative=False):
         stable softmax function, set derivative = true to get the derivative
     '''
     vecs = np.exp(x  - np.max(x))
-    if derivative==True:
+    if derivative == True:
         if len(x.shape) > 1:
             s = vecs/(np.sum(vecs,axis=1).reshape(x.shape[0],1))
             return s*(1-s)
@@ -31,6 +31,16 @@ def softmax(x,derivative=False):
             return vecs/(np.sum(vecs,axis=1).reshape(x.shape[0],1))
         else:
             return vecs/(np.sum(vecs))
+
+def relu(x,derivative=False):
+    '''
+        relu function, set derivative = true to get the derivative
+    '''
+    rel = np.maximum(x,0)
+    if derivative == True:
+        rel[x < 0] = 0
+        rel[x >= 0] = 1
+    return rel
 
 #similarity measurements
 def compute_covariance(X,col=True, correlation=False):
@@ -167,7 +177,7 @@ def mean_squared_error(predictions,y):
         mean squared error
     """
     m = predictions.shape[0]
-    loss = (1/m)*(np.sum((y - predictions)**2))
+    loss = np.square(np.subtract(y, predictions)).mean()
     return loss
 
 #plotting vals

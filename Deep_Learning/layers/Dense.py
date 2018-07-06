@@ -40,6 +40,9 @@ class Dense():
             
         elif activation == "linear":
             self.activation = self.linear
+
+        elif activation == "relu":
+            self.activation = tools.relu
     
     def initialize(self,prevlayer):
 
