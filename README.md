@@ -1,36 +1,36 @@
-## Popular machine/deep learning algorithms and strategies implemented from scratch using primitive packages, such as numpy and pandas, to make clear understanding of the mathematical concepts behind them. Each algorithm is applied on real-life data 
+## Popular machine/deep learning algorithms and strategies implemented from scratch using primitive packages, such as numpy and pandas, to make clear understanding of the mathematical concepts behind them.
 
 ## Algorithms Implemented
 
 ### Supervised Learning
-  - [K Nearest Neighbors](Supervised_Learning/KNN.py)
-  - [Linear Distriminant Analysis](Supervised_Learning/LinearDiscriminantAnalysis.py)
-  - [Linear Regression](Supervised_Learning/LinearRegression.py)
-  - [Logistic Regression](Supervised_Learning/LogisticRegression.py)
-  - [Naive Bayes](Supervised_Learning/NaiveBayes.py)
-  - [Softmax Regression](Supervised_Learning/SoftmaxRegression.py)
+  - [K Nearest Neighbors](barebones_ai/supervised/knn.py)
+  - [Linear Distriminant Analysis](barebones_ai/supervised/lda.py)
+  - [Linear Regression](barebones_ai/supervised/linear_regression.py)
+  - [Logistic Regression](barebones_ai/supervised/logistic_regression.py)
+  - [Naive Bayes](barebones_ai/supervised/naive_bayes.py)
+  - [Softmax Regression](barebones_ai/supervised/softmax_regression.py)
 
 ### Unsupervised Learning
-  - [Fuzzy K Means](Unsupervised_Learning/FuzzyKmeans.py)
-  - [K Means / K Medians](Unsupervised_Learning/KMeans_Medians.py)
-  - [PCA](Unsupervised_Learning/PCA.py)
-  - [Spectral Clustering](Unsupervised_Learning/SpectralClustering.py)
+  - [Fuzzy K Means](barebones_ai/unsupervised_learning/fuzzy_kmeans.py)
+  - [K Means / K Medians](barebones_ai/unsupervised_learning/kmeans.py)
+  - [PCA](barebones_ai/unsupervised_learning/pca.py)
+  - [Spectral Clustering](barebones_ai/unsupervised_learning/spectral_clustering.py)
 
 ### Deep Learning
-  - [Deep Neural Network](Deep_Learning/DeepNeuralNetwork.py)
+  - [Deep Neural Network](barebones_ai/supervised/nn/dnn.py)
     - Layers:
-      - [Input Layers](Deep_Learning/layers/Input.py)
-      - [Dense Layers](Deep_Learning/layers/Dense.py)
-      - [Softmax Layers](Deep_Learning/layers/Softmax.py)
+      - [Input Layers](barebones_ai/supervised/nn/layers/input.py)
+      - [Dense Layers](barebones_ai/supervised/nn/layers/dense.py)
+      - [Softmax Layers](barebones_ai/supervised/nn/layers/softmax.py)
     - Optimization Methods:
-      - [Stochastic Gradient Descent](Deep_Learning/nn_optimization_methods.py)
-  - [AutoEncoder](Deep_Learning/AutoEncoder.py)
+      - [Stochastic Gradient Descent](barebones_ai/supervised/nn/nn_optimization_methods.py)
+  - [AutoEncoder](barebones_ai/supervised/nn/auto_encoder.py)
 
 ### Optimization Methods
-  - [Conjugate Gradient Descent](tools/iterative_methods.py)
-  - [Jacobi Iteration](tools/iterative_methods.py)
-  - [Mini-Batch Gradient Descent](tools/iterative_methods.py)
-  - [Steepest Gradient Descent](tools/iterative_methods.py)
+  - [Conjugate Gradient Descent](barebones_ai/optimization.py)
+  - [Jacobi Iteration](barebones_ai/optimization.py)
+  - [Mini-Batch Gradient Descent](barebones_ai/optimization.py)
+  - [Steepest Gradient Descent](barebones_ai/optimization.py)
 
 ## How to use 
   ### Supervised, Unsupervised Learning algorithms work like sci-kit learn:  
@@ -56,4 +56,4 @@
       dnn.fit(X,y,lr=0.001,epochs=100) #train for 100 epochs w/ a learning rate of 0.001
       predictions = dnn.predict(input)
 
-### [Examples](Applications/)
+### [Examples](notebooks/)
